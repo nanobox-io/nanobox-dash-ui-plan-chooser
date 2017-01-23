@@ -10,8 +10,8 @@ class PlanChooser
 
   createSteps : () ->
     $holder   = @stepManager.build()
-    @category = new Category $holder
-    @finalize = new Finalize $holder
+    @category = new Category $holder, @stepManager.nextStep
+    @finalize = new Finalize $holder, @category.getChoice
 
     @stepManager.addSteps [@category, @finalize]
 

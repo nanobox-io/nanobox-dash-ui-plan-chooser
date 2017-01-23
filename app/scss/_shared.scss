@@ -1,0 +1,20 @@
+.icon-choices        {display: flex; justify-content: space-around;
+  label              {cursor:pointer; }
+  .icon-choice       {display: flex; flex-direction: column;align-items: center; text-align: center; width:200px;
+    .lexi-ui         {margin:20px 0 15px; }
+    .icon            {background: white; width: 167px; height: 167px; border-radius: 50%; display: flex; align-items: center; justify-content: center;}
+    .cost, .title    { }
+    .cost            {@include title; }
+    .cost            {font-size:22px; font-weight:normal; letter-spacing: 0; text-transform: none;
+      &:before       {content:"$"}
+      &:after        {content:"/mo"}
+    }
+    .blurb           {color:#a3b4c2; font-size:16px; font-style:italic; line-height:1.5;}
+    &.big            {width:250px;
+      .icon          {width:247px; height:247px;}
+      .title         {font-size:19px; margin-top:-5px;}
+      .blurb         {width:200px; }
+    }
+    &.little-brother {margin-top:80px;}
+  }
+}

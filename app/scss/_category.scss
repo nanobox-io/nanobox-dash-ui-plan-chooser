@@ -1,0 +1,13 @@
+.category         {width:996px; display: flex; flex-direction: column; padding-top:30px;
+  .finalize       {display: flex; justify-content: center; margin-top: 50px;
+    .arrow-button {margin-left: -60px;}
+  }
+  .icon-choice    {
+    &.big         {
+      svg         {margin-left: 8px; margin-top:17px;  }
+    }
+    &.pre-prod    {
+      svg         {margin-left: 2px; margin-top:12px;  }
+    }
+  }
+}

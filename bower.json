@@ -5,7 +5,8 @@
     "jquery": "*",
     "velocity": "~1.1.0",
     "shadow-icons": "tolmark12/shadow-icons-js",
-    "sequin": "^0.0.3"
+    "sequin": "^0.0.3",
+    "lexi": "nanobox-io/lexi"
   },
   "ignore": [
     "app",

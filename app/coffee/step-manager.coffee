@@ -33,7 +33,7 @@ module.exports = class StepManager
     @$currentStep.text @steps.currentItemIndex+1
     @$stepTitle.text @currentStep.getTitle()
 
-    $( ".step", @$node).removeClass 'active'
+    $(".plan-step", @$node).removeClass 'active'
     @currentStep.$node.addClass 'active'
     left = - @steps.currentItem().$node.position().left
 
@@ -52,11 +52,8 @@ module.exports = class StepManager
       @$node.addClass 'first'
 
   nextStep : () =>
-    if @steps.isAtLastItem()
-      @submit()
-    else
-      @steps.next()
-      @slideToCurrentStep()
+    @steps.next()
+    @slideToCurrentStep()
 
   previousStep : () =>
     @steps.prev()

@@ -1,0 +1,17 @@
+.open-source      {display:flex; align-items: top; justify-content: space-between; padding:40px 140px 0;
+  .icon-choice    {
+    .icon         {background: none;
+      svg         {transform:scale(1.25)}
+    }
+    .strike       {position: relative;
+      &:after     {content:""; border-bottom:solid 3px #ff82bc; width:110px; position: absolute; top:14px; left:33px; transform:rotate(12deg); opacity:0.7}
+    }
+    .cost         {font-size:25px; }
+  }
+  .info           {width:465px; display: flex; flex-direction: column; margin-top:30px;
+    .title        {font-size:18px;}
+    .blurb        {color:#658a9f; font-weight:$medium;  }
+    textarea      {width:100%; padding:15px; @include blurb; margin-top:15px; resize:vertical; color:#234F69; font-weight:$medium; }
+    .arrow-button {margin-left: auto; margin-top:15px; }
+  }
+}
