@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+  
+  head
+    title Plan Chooser
+
+    // build:remove 
+    link(href="stage/css/stage.css", rel="stylesheet")
+    link(href="css/shared-svg.css", rel="stylesheet")
+    // endbuild
+    
+    // build:css style.css
+    link(href="css/main.css", rel="stylesheet")
+    // endbuild
+
+  body
+    // build:remove 
+    script(src="bower-libs/jquery/dist/jquery.js")
+    script(src="bower-libs/jade/runtime.js")
+    script(src="bower-libs/sequin/rel/app.js")
+    script(src="bower-libs/shadow-icons/rel/app.js")
+    script(src="https://use.typekit.net/cqd5kth.js")
+    script(src="js/shared-svg.js")
+    // endbuild
+
+    script(type="text/javascript") try{Typekit.load({ async: true });}catch(e){}
+
+
+    // build:js app.js
+    script(src="js/main.js")
+    // endbuild
+    
+    // build:remove 
+    script(src="stage/js/stage.js")
+    // endbuild
+    
+    
+    
+    // build:remove 
+    script(src="http://localhost:35729/livereload.js")
+    // endbuild
