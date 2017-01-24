@@ -6,7 +6,7 @@ OpenSource    = require 'steps/finalize/open-source'
 
 module.exports = class Finalize extends Step
 
-  constructor: ($el, @getChoice) ->
+  constructor: ($el, @getChoice, @mainSubmitCb) ->
     @choice = ""
     @$node  = $ finalize( {} )
     $el.append @$node
@@ -20,11 +20,14 @@ module.exports = class Finalize extends Step
       @display.destroy()
 
     switch @choice
-      when 'open'
-        @display = new OpenSource(@$node)
-      when 'pre'
-        @display = new PreProduction(@$node)
+      when 'open-source'
+        @display = new OpenSource(@$node, @submitCb)
+      when 'pre-production'
+        @display = new PreProduction(@$node, @submitCb)
       when 'production'
-        @display = new Production(@$node)
+        @display = new Production(@$node, @submitCb)
+
+  submitCb : () =>
+    @mainSubmitCb @display.getInfo()
 
   getTitle  : () -> "Finalize"

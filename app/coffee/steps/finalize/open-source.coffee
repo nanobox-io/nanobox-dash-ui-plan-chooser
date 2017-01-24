@@ -2,9 +2,15 @@ openSource = require 'jade/steps/finalize/open-source'
 
 module.exports = class OpenSource
 
-  constructor: ($el) ->
+  constructor: ($el, onSubmit) ->
     @$node = $ openSource( {} )
     $el.append @$node
     castShadows @$node
+    $(".arrow-button", @$node).on 'click', ()-> onSubmit()
 
   destroy : () -> @$node.remove()
+
+  getInfo : () ->
+    plan : 'custom'
+    meta :
+      projectDescription : $("textarea", @$node).val()

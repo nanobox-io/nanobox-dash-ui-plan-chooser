@@ -1,6 +1,9 @@
-.production      {
-  .icon          {flex-direction:column;justify-content: center; position: relative; justify-content: flex-end;
-    svg          {margin-bottom:70px; }
-    .micro-title {position: absolute;bottom :30px; font-style:normal; font-weight: $bold; letter-spacing: 0.06em; font-size:13px; color:#a3b4c2; text-transform: uppercase; }
+.production       {
+  .icon           {flex-direction:column;justify-content: center; position: relative; justify-content: flex-end;
+    svg           {margin-bottom:70px; }
+    .micro-title  {position: absolute;bottom :30px; font-style:normal; font-weight: $bold; letter-spacing: 0.06em; font-size:13px; color:#a3b4c2; text-transform: uppercase; }
+  }
+  .finalize       {display: flex; justify-content: center;
+    .arrow-button {margin-top:60px; }
   }
 }

@@ -19,6 +19,9 @@ module.exports = class StepManager
     castShadows @$node
     return $('.steps', @$node)
 
+  hide : () -> $(".step-title-bar").css display:"none"
+
+
   addSteps : (steps) ->
     @$allSteps    = $ ".step", @$node
     @steps = new Sequin( steps )

@@ -12,5 +12,6 @@ module.exports = class Category extends Step
     $(".continue", @$node).on 'click', nextStepCb
 
 
-  getChoice : () => $("input:radio[name='app-type']:checked").val()
+  setPlan   : (plan) -> $("input:radio[value='#{plan}']", @$node).trigger 'click'
+  getChoice : () => $("input:radio[name='app-type']:checked", @$node).val()
   getTitle  : () -> "Specify app type / phase"

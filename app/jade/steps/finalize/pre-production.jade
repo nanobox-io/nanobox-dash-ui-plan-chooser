@@ -5,7 +5,7 @@
   .blurb We don't charge while you are in pre-production. We'll check in periodically to see what we can do to help you get up and running. 
   .row
     .label Expected Launch Date
-    select.stretch.margin
+    select.stretch.margin.month
       option(value="jan") January
       option(value="feb") Febuary
       option(value="mar") March
@@ -18,20 +18,20 @@
       option(value="oct") October
       option(value="nov") November
       option(value="dec") December
-    select 
+    select.year
       option(value="2017") 2017
       option(value="2018") 2018
   .row
     .label Best way we can help
-    select.stretch
+    select.stretch.help-needed
       option(value="configuring") Configuring the environment
       option(value="migrating") Migrating App
       option(value="benchmarking") Traffic Benchmarking
   .row
     .label Prefered point of contact
-    select.margin
+    select.margin.contact-pref
       option(value="email") email
       option(value="phone") phone
-    input.stretch
+    input.stretch.contact-details
   .submit
     .arrow-button Submit
