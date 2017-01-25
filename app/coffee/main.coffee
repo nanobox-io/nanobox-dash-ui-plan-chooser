@@ -4,16 +4,16 @@ Finalize    = require 'steps/finalize'
 
 class PlanChooser
 
-  constructor: (@$el) ->
+  constructor: (@$el, @config) ->
 
   displayCurrentPlan : () ->
 
-  choosePlan : (@config) ->
+  choosePlan : () ->
     @stepManager = new StepManager @$el, @config.onCancel
     @createSteps()
     if @config.currentPlan?
       # If ther current plan is either open-source or pre-production...
-      if @config.currentPlan == "open-source" || @config.currentPlan == "pre-production"
+      if @config.currentPlan == "opensource" || @config.currentPlan == "pre-production"
         @category.setPlan @config.currentPlan
       # else, if in production, only show the production plans
       else
@@ -23,7 +23,7 @@ class PlanChooser
   createSteps : () ->
     $holder   = @stepManager.build()
     @category = new Category $holder, @stepManager.nextStep
-    @finalize = new Finalize $holder, @category.getChoice, @submit
+    @finalize = new Finalize $holder, @category.getChoice, @config, @submit
 
     @stepManager.addSteps [@category, @finalize]
 

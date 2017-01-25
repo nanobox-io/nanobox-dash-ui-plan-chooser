@@ -1,9 +1,20 @@
-.production       {
-  .icon           {flex-direction:column;justify-content: center; position: relative; justify-content: flex-end;
-    svg           {margin-bottom:70px; }
-    .micro-title  {position: absolute;bottom :30px; font-style:normal; font-weight: $bold; letter-spacing: 0.06em; font-size:13px; color:#a3b4c2; text-transform: uppercase; }
+.production              {
+  .icon                  {flex-direction:column;justify-content: center; position: relative; justify-content: flex-end;
+    svg                  {margin-bottom:70px; }
+    .micro-title         {position: absolute;bottom :30px; font-style:normal; font-weight: $bold; letter-spacing: 0.06em; font-size:13px; color:#a3b4c2; text-transform: uppercase; }
   }
-  .finalize       {display: flex; justify-content: center;
-    .arrow-button {margin-top:60px; }
+  .finalize              {display: flex; justify-content: flex-end; margin-top:60px; padding-right:40px;
+    .pay-holder          {@include blurb; display: flex; margin-right:40px;
+      .micro-chooser     {margin: 0 10px; }
+    }
+    .arrow-button        {margin-top:-10px; }
+    .add-payment-method  {display: none; }
+    &.no-payment-methods {
+      .arrow-button      {opacity:0.4; pointer-events: none; }
+      .pay-holder        {display:none;}
+      .add-payment-method{@include blurb; display:flex; align-items: center; margin-top:-10px; padding:0 50px;
+        .button          {margin-left: 10px; }
+      }
+    }
   }
 }

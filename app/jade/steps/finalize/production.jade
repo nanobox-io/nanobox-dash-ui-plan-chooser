@@ -1,49 +1,28 @@
+mixin pluralize(value, descriptor)
+  if value == 1
+    .item #{value} #{descriptor}
+  else
+    .item #{value} #{descriptor}s
+    
+  
 .production
   .icon-choices.lexi
-    label
-      .icon-choice.little-brother.pre-prod
-        .icon
-          img.shadow-icon(data-src="plan-small")
-          .micro-title Small
-        input(value="small" type="radio" name="plan")
-        .cost 29
-        .blurb 
-          .item 1 Server
-          .item 1 Collaborator
-          .item 1 Trigger
-    label
-      .icon-choice.little-brother.pre-prod
-        .icon
-          img.shadow-icon(data-src="plan-startup")
-          .micro-title Starup
-        input(value="startup" type="radio" name="plan" checked="checked")
-        .cost 99
-        .blurb 
-          .item 5 Server
-          .item 5 Collaborator
-          .item 5 Trigger
-    label
-      .icon-choice.little-brother.pre-prod
-        .icon
-          img.shadow-icon(data-src="plan-business")
-          .micro-title Business
-        input(value="business" type="radio" name="plan")
-        .cost 299
-        .blurb 
-          .item 30 Server
-          .item 30 Collaborator
-          .item 30 Trigger
-    label
-      .icon-choice.little-brother.pre-prod
-        .icon
-          img.shadow-icon(data-src="plan-custom")
-          .micro-title Custom
-        input(value="custom" type="radio" name="plan")
-        .cost 599
-        .blurb 
-          .item 30 Server
-          .item 30 Collaborator
-          .item 30 Trigger
+    each plan in plans
+      label
+        .icon-choice.little-brother.pre-prod
+          .icon
+            img.shadow-icon(data-src="plan-#{plan.id}")
+            .micro-title #{plan.name}
+          input(value="#{plan.id}" type="radio" name="plan")
+          .cost= plan.max_price
+          .blurb 
+            +pluralize(plan.max_servers, 'Server')
+            +pluralize(plan.max_collaborators, 'Collaborator')
+            +pluralize(plan.max_triggers, 'Trigger')
   
   .finalize
+    .pay-holder Select a Payment Method : 
+    .add-payment-method 
+      .txt To checkout, first : 
+      a.button(href="#{addPayMethodPath}") Add a Payment Method
     .arrow-button Submit

@@ -19,7 +19,7 @@ module.exports = class StepManager
     castShadows @$node
     return $('.steps', @$node)
 
-  hide : () -> $(".step-title-bar").css display:"none"
+  hide : () -> $(".step-title-bar").addClass 'reduce-to-cancel'
 
 
   addSteps : (steps) ->

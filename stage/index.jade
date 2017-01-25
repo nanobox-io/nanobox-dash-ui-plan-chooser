@@ -20,6 +20,7 @@ html(lang="en")
     script(src="bower-libs/jquery/dist/jquery.js")
     script(src="bower-libs/jade/runtime.js")
     script(src="bower-libs/sequin/rel/app.js")
+    script(src="bower-libs/payment-methods/rel/app.js")
     script(src="bower-libs/shadow-icons/rel/app.js")
     script(src="https://use.typekit.net/cqd5kth.js")
     script(src="bower-libs/lexi/rel/app.js")
@@ -28,6 +29,10 @@ html(lang="en")
 
     script(type="text/javascript") try{Typekit.load({ async: true });}catch(e){}
 
+
+    // build:remove 
+    script(src="bower-libs/payment-methods/rel/data-shim.js")
+    // endbuild
 
     // build:js app.js
     script(src="js/plan-chooser-svg.js")
