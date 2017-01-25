@@ -25,7 +25,8 @@ module.exports = class Production
 
   getInfo : () ->
     plan : $("input:radio[name='plan']:checked", @$node).val()
-    paymentMethod : @payMethods.getMicroChooserVal()
+    meta :
+      paymentMethod : @payMethods.getMicroChooserVal()
 
 
   # ------------------------------------ Helpers

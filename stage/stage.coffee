@@ -12,7 +12,7 @@ config =
   plans            : shim.getPlans()
   ###
   data:
-    plan : "id-of-the-new-plan" - open-source, pre-production, small, startup, business, custom
+    plan : "id-of-the-new-plan" - opensource, pre-production, small, startup, business, custom
     meta : hash of info specific to their plan
   ###
   changePlan  : (data, cb)-> console.log "Changing plan to : "; console.log data; cb()
