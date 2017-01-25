@@ -1,12 +1,14 @@
 StepManager = require 'step-manager'
 Category    = require 'steps/category'
 Finalize    = require 'steps/finalize'
+MiniDisplay = require 'mini-display'
 
 class PlanChooser
 
   constructor: (@$el, @config) ->
 
   displayCurrentPlan : () ->
+    @miniDisplay = new MiniDisplay @$el, @config
 
   choosePlan : () ->
     @stepManager = new StepManager @$el, @config.onCancel

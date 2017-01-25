@@ -1,5 +1,6 @@
 @import '../../lib/assets/core-styles/scss/utils';
 @import 'vars-and-utils';
+@import 'mini-display';
 .plan-choose{
   .blurb{ @include blurb }
   .title{ @include title }
@@ -15,6 +16,6 @@
     &.active{opacity:1;}
   }
   .in-production{
-    
+
   }
 }

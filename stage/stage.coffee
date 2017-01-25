@@ -17,7 +17,11 @@ config =
   ###
   changePlan  : (data, cb)-> console.log "Changing plan to : "; console.log data; cb()
 
-app = new nanobox.PlanChooser( $("body"), config )
-app.choosePlan()
+showMiniDisplay = false
+app = new nanobox.PlanChooser( $(".holder"), config )
 
-# app.displayCurrentPlan( {plan:'startup'} )
+if !showMiniDisplay
+  app.choosePlan()
+else
+  $('.holder').css width:640, margin:"0 auto", 'margin-top':60;
+  app.displayCurrentPlan()
