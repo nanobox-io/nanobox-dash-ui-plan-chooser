@@ -1,0 +1,19 @@
+$slider-width:190px;
+
+.slider       { background:none; display:flex; align-items: center; width:$slider-width; box-sizing: border-box; position:relative; user-select: none; margin-top:30px;
+  $slide-blue:#418FDE;
+  .tracks     { height: 8px; width:$slider-width; position:relative;
+    .track,
+    .track-bg { height:100%; position:absolute;  }
+    .track    { background: $slide-blue; }
+    .track-bg { background: white; width:100%;  }
+  }
+  $dragger-width : 20px;
+  .dragger      { position:absolute;
+    .hit-area   { width:20px; height:25px; position: absolute; top:14px; cursor: pointer; width: $dragger-width; left:-$dragger-width/2; padding:20px 0;
+      .handle   { position:absolute; top:13px;
+        &:after { bottom: 100%; left: 50%;border: solid transparent;content: ""; height: 0;width: 0;position: absolute;pointer-events: none;border-color: rgba(#418FDE, 0); border-bottom-color: $slide-blue; border-width: $dragger-width/2;  }
+      }
+    }
+  }
+}

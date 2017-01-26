@@ -1,25 +1,26 @@
-mixin pluralize(value, descriptor)
+mixin pluralize(value, descriptor, klass)
   if value == 1
-    .item #{value} #{descriptor}
+    .item(class="#{klass}") #{value} #{descriptor}
   else
-    .item #{value} #{descriptor}s
+    .item(class="#{klass}") #{value} #{descriptor}s
     
   
 .production
   .icon-choices.lexi
     each plan in plans
-      label
-        .icon-choice.little-brother.pre-prod
-          .icon
-            img.shadow-icon(data-src="plan-#{plan.id}")
-            .micro-title #{plan.name}
-          input(value="#{plan.id}" type="radio" name="plan")
-          .cost= plan.max_price
-          .blurb 
-            +pluralize(plan.max_servers, 'Server')
-            +pluralize(plan.max_collaborators, 'Collaborator')
-            +pluralize(plan.max_triggers, 'Trigger')
-  
+      .choice(id="#{plan.name}")
+        label
+          .icon-choice.little-brother.pre-prod
+            .icon
+              img.shadow-icon(data-src="plan-#{plan.id}")
+              .micro-title #{plan.name}
+            input(value="#{plan.id}" type="radio" name="plan")
+            .cost= plan.max_price
+            .blurb 
+              +pluralize(plan.max_servers, 'Server', 'servers')
+              +pluralize(plan.max_collaborators, 'Collaborator', 'collaborators')
+              +pluralize(plan.max_triggers, 'Trigger', 'triggers')
+
   .finalize
     .pay-holder Select a Payment Method : 
     .add-payment-method 
