@@ -14,4 +14,4 @@ module.exports = class MiniDisplay
         if planKey == config.currentPlan
           config.currentPlanDetails = plan
           return
-    console.log "Unable to find a plan called : `#{config.currentPlan}`"
+    console.log "Unable to find a plan called : `#{config.currentPlan.key}`"

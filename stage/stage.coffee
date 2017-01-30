@@ -3,13 +3,16 @@ shim      = new PlanShim()
 
 # Samplse Config
 config =
-  onCancel         : ()-> console.log "canceling.."
-  currentPlan      : "opensource"
-  paymentMethods   : paymentMethodShim.getPaymentMethods(),
-  paymentMethod    : 'zumiez'
-  planChangePath   : "/some/path"
-  addPayMethodPath : "/some/path/add/pay"
-  plans            : shim.getPlans()
+  onCancel          : ()-> console.log "canceling.."
+  paymentMethods    : paymentMethodShim.getPaymentMethods(),
+  paymentMethod     : 'personal'
+  planChangePath    : "/some/path"
+  addPayMethodPath  : "/some/path/add/pay"
+  plans             : shim.getPlans()
+  currentPlan       :
+    key           : "opensource"
+    name          : "Custom"
+    customServers : 450
   ###
   data:
     plan : "id-of-the-new-plan" - opensource, pre-production, small, startup, business, custom

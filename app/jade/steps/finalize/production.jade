@@ -18,7 +18,7 @@ mixin pluralize(value, descriptor, klass)
             .cost= plan.max_price
             .blurb 
               +pluralize(plan.max_servers, 'Server', 'servers')
-              +pluralize(plan.max_collaborators, 'Collaborator', 'collaborators')
+              //- +pluralize(plan.max_collaborators, 'Collaborator', 'collaborators')
               +pluralize(plan.max_triggers, 'Trigger', 'triggers')
 
   .finalize
@@ -26,4 +26,4 @@ mixin pluralize(value, descriptor, klass)
     .add-payment-method 
       .txt To checkout, first : 
       a.button(href="#{addPayMethodPath}") Add a Payment Method
-    .arrow-button Submit
+    .arrow-button.lifecycle Submit

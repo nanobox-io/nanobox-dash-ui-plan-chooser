@@ -8,12 +8,14 @@ module.exports = class Production
     $el.append @$node
     castShadows @$node
     lexify @$node
-    $(".arrow-button", @$node).on 'click', ()-> onSubmit()
+    $(".arrow-button", @$node).on 'click', (e)->
+      $(e.currentTarget).addClass 'ing'
+      onSubmit()
     @addPaymentMethodChooser()
 
     # Select their current plan
     if @currentlyPaying()
-      $("input:radio[value='#{@config.currentPlan.toLowerCase()}']").trigger 'click'
+      $("input:radio[value='#{@config.currentPlan.key.toLowerCase()}']").trigger 'click'
     else
       $("input:radio[value='startup']").trigger 'click'
 
@@ -43,14 +45,19 @@ module.exports = class Production
   # ------------------------------------ 'Custom' plan
 
   addSlider : () ->
+    if @config.currentPlan.key == "custom"
+      initialServerTotal = @config.currentPlan.customServers
+    else
+      initialServerTotal = 50
+
     $customNode     = $(".choice#Custom", @$node)
-    slider          = new Slider($customNode, @onTotalChanged, 50, 20, 1000, 20)
+    slider          = new Slider($customNode, @onTotalChanged, initialServerTotal, 30, 1000, 20)
     @$customServers       = $ '.servers', $customNode
     @$customPrice         = $ '.cost', $customNode
     @$customTriggers      = $ '.cost', $customNode
-    @$customCollaborators = $ '.collaborators', $customNode
+    # @$customCollaborators = $ '.collaborators', $customNode
 
-    @onTotalChanged 50
+    @onTotalChanged initialServerTotal
 
   onTotalChanged : (newTotal) =>
     @updateCustomServerTotal newTotal, Math.floor(@calculatePrice(newTotal))
@@ -79,7 +86,7 @@ module.exports = class Production
 
   currentlyPaying : ()->
     for key, plan of @config.plans.paid
-      if plan.name.toLowerCase() == @config.currentPlan.toLowerCase()
+      if plan.name.toLowerCase() == @config.currentPlan.key.toLowerCase()
         return true
 
   sortPlans : () ->

@@ -5,7 +5,6 @@ module.exports = class Slider
   constructor: ($el, onTotalChangeCb, @currentTotal=10, @lowerLimit=1, @upperLimit=40, @incrament=1) ->
     $node = $ slider( {} )
     $el.append $node
-    console.log "hi"
 
     @steps = @upperLimit
     @build($el)

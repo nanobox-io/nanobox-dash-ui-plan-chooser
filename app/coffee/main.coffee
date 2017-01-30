@@ -13,10 +13,10 @@ class PlanChooser
   choosePlan : () ->
     @stepManager = new StepManager @$el, @config.onCancel
     @createSteps()
-    if @config.currentPlan?
+    if @config.currentPlan.key?
       # If ther current plan is either open-source or pre-production...
-      if @config.currentPlan == "opensource" || @config.currentPlan == "pre-production"
-        @category.setPlan @config.currentPlan
+      if @config.currentPlan.key == "opensource" || @config.currentPlan.key == "pre-production"
+        @category.setPlan @config.currentPlan.key
       # else, if in production, only show the production plans
       else
         @stepManager.nextStep()
@@ -31,13 +31,14 @@ class PlanChooser
 
   # Todo : add error handling here
   submit : (data) =>
-    if data.plan != @config.currentPlan
-      @config.changePlan data, (results={})=>
-        if !results.error?
-          setTimeout ->
-            window.location.reload()
-          ,
-            600
+    # if data.plan != @config.currentPlan.key
+    @config.changePlan data, (results={})=>
+      if !results.error?
+        setTimeout ->
+          window.location.reload()
+          # console.log "saving.."
+        ,
+          600
 
 
 window.nanobox ||= {}
