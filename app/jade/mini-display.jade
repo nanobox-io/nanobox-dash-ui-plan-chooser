@@ -1,5 +1,5 @@
 .mini-display
   .icon
-    img.shadow-icon(data-src="plan-#{currentPlan}")
-  .title= currentPlanDetails.name
+    img.shadow-icon(data-src="plan-#{currentPlan.key}")
+  .title= currentPlan.name
   a.arrow-button(href="#{planChangePath}") Change Plan

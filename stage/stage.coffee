@@ -11,7 +11,7 @@ config =
   plans             : shim.getPlans()
   currentPlan       :
     key           : "opensource"
-    name          : "Custom"
+    name          : "Open Source"
     customServers : 450
   ###
   data:
@@ -20,7 +20,7 @@ config =
   ###
   changePlan  : (data, cb)-> console.log "Changing plan to : "; console.log data; cb()
 
-showMiniDisplay = false
+showMiniDisplay = true
 app = new nanobox.PlanChooser( $(".holder"), config )
 
 if !showMiniDisplay
