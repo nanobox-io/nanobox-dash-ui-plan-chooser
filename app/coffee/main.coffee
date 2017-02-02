@@ -15,7 +15,7 @@ class PlanChooser
     @createSteps()
     if @config.currentPlan.key?
       # If ther current plan is either open-source or pre-production...
-      if @config.currentPlan.key == "opensource" || @config.currentPlan.key == "pre-production"
+      if !@config.isProduction
         @category.setPlan @config.currentPlan.key
       # else, if in production, only show the production plans
       else
@@ -35,8 +35,8 @@ class PlanChooser
     @config.changePlan data, (results={})=>
       if !results.error?
         setTimeout ->
-          window.location.reload()
-          # console.log "saving.."
+          # window.location.reload()
+          console.log "saving.."
         ,
           600
 

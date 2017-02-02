@@ -8,10 +8,12 @@ config =
   paymentMethod     : 'personal'
   planChangePath    : "/some/path"
   addPayMethodPath  : "/some/path/add/pay"
+  appDestroyPath    : "/some/path/to/destroy"
   plans             : shim.getPlans()
+  isProduction      : true
   currentPlan       :
-    key           : "opensource"
-    name          : "Open Source"
+    key           : "custom"
+    name          : "Trial"
     customServers : 450
   ###
   data:
@@ -20,7 +22,7 @@ config =
   ###
   changePlan  : (data, cb)-> console.log "Changing plan to : "; console.log data; cb()
 
-showMiniDisplay = true
+showMiniDisplay = false
 app = new nanobox.PlanChooser( $(".holder"), config )
 
 if !showMiniDisplay

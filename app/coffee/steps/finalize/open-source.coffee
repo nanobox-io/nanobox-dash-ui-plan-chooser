@@ -11,6 +11,6 @@ module.exports = class OpenSource
   destroy : () -> @$node.remove()
 
   getInfo : () ->
-    plan : 'custom'
+    plan : 'opensource'
     meta :
       projectDescription : $("textarea", @$node).val()
