@@ -8,7 +8,7 @@ mixin pluralize(value, descriptor, klass)
 .production
   .icon-choices.lexi
     each plan in plans
-      .choice(id="#{plan.name}")
+      .choice(id="#{plan.name}" class=plan.is_disabled ? "disabled" : "")
         label
           .icon-choice.little-brother.pre-prod
             .icon

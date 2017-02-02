@@ -11,6 +11,7 @@ module.exports = class PlansShim
         max_collaborators: 1
         max_triggers: 1
         max_price: 29.0
+        is_disabled: true
 
       startup:
         name: 'Startup'
