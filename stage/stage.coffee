@@ -10,11 +10,10 @@ config =
   addPayMethodPath  : "/some/path/add/pay"
   appDestroyPath    : "/some/path/to/destroy"
   plans             : shim.getPlans()
-  isProduction      : true
   currentPlan       :
-    key           : "custom"
-    name          : "Trial"
-    customServers : 450
+    isProduction : true
+    key          : "small"
+    name         : "Small"
   ###
   data:
     plan : "id-of-the-new-plan" - opensource, pre-production, small, startup, business, custom

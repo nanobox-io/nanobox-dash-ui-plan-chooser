@@ -15,7 +15,7 @@ class PlanChooser
     @createSteps()
     if @config.currentPlan.key?
       # If ther current plan is either open-source or pre-production...
-      if !@config.isProduction
+      if !@config.currentPlan.isProduction
         @category.setPlan @config.currentPlan.key
       # else, if in production, only show the production plans
       else
