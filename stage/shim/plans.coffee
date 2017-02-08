@@ -34,8 +34,8 @@ module.exports = class PlansShim
       description: ""
   getPlans : () ->
     paid:
-      small:
-        name: 'Small'
+      tinker:
+        name: 'Tinker'
         description: 'WIP description for Small.'
         max_price: 9.0
         is_disabled: true
@@ -44,8 +44,8 @@ module.exports = class PlansShim
           "small_server"
         ]
 
-      startup:
-        name: 'Startup'
+      core:
+        name: 'Core'
         description: 'WIP description for Startup.'
         max_price: 99.0
         features:[
@@ -53,8 +53,8 @@ module.exports = class PlansShim
           "mult_servers"
           "triggers"
         ]
-      business:
-        name: 'Business'
+      flex:
+        name: 'Flex'
         description: 'WIP description for Business.'
         max_price: 299.0
         features:[

@@ -27,7 +27,7 @@ module.exports = class Production
     if @currentlyPaying()
       $("input:radio[value='#{@config.currentPlan.key.toLowerCase()}']", @$node).trigger 'click'
     else
-      $("input:radio[value='startup']", @$node).trigger 'click'
+      $("input:radio[value='core']", @$node).trigger 'click'
 
   showCustom : () ->
     @$arrowBtn.addClass 'disabled'
