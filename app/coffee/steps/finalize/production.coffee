@@ -1,38 +1,54 @@
 production = require 'jade/steps/finalize/production'
+contactUs  = require 'jade/steps/finalize/contact-us'
 Slider     = require 'slider'
 
 module.exports = class Production
 
-  constructor: ($el, onSubmit, @config) ->
-    @$node = $ production( {plans:@sortPlans(), addPayMethodPath:@config.addPayMethodPath} )
+  constructor: ($el, nextStep, @config) ->
+    @$node = $ production( {plans:@sortPlans(), addPayMethodPath:@config.addPayMethodPath, planFeatures:@config.planFeatures} )
     $el.append @$node
     castShadows @$node
     lexify @$node
-    $(".arrow-button", @$node).on 'click', (e)->
-      $(e.currentTarget).addClass 'ing'
-      onSubmit()
-    @addPaymentMethodChooser()
+    @$arrowBtn = $(".arrow-button", @$node)
+    @$arrowBtn.on 'click', (e)->
+      # $(e.currentTarget).addClass 'ing'
+      nextStep()
 
     # Select their current plan
+    @selectCurrentPlan()
+
+    $("input:radio[name='plan']", @$node).on 'click', (e)=>
+      if e.currentTarget.value == 'custom'
+        @showCustom()
+      else
+        @hideCustom()
+
+  selectCurrentPlan : () ->
     if @currentlyPaying()
-      $("input:radio[value='#{@config.currentPlan.key.toLowerCase()}']").trigger 'click'
+      $("input:radio[value='#{@config.currentPlan.key.toLowerCase()}']", @$node).trigger 'click'
     else
-      $("input:radio[value='startup']").trigger 'click'
+      $("input:radio[value='startup']", @$node).trigger 'click'
 
-    if @config.paymentMethods.length == 0
-      $(".finalize").addClass "no-payment-methods"
+  showCustom : () ->
+    @$arrowBtn.addClass 'disabled'
+    @$contactUs = $ contactUs( {chatIsAvailable:window.Dashboard?.olark?.isAvailable} )
+    $("#Custom", @$node).append @$contactUs
+    $("#close-btn", @$contactUs).on 'click', ()=> @hideCustom(); @selectCurrentPlan()
+    $("#open-live-chat", @$contactUs).on 'click', ()=> Dashboard.olark.open()
+    castShadows @$contactUs
 
-    @addSlider()
+  hideCustom : () ->
+    if @$contactUs?
+      @$contactUs.remove()
+    @$arrowBtn.removeClass 'disabled'
 
-  addPaymentMethodChooser : () ->
-    @payMethods = new nanobox.PaymentMethods $(".pay-holder", @$node), @config, false
-    @payMethods.createMicroChooser @config.paymentMethod, (newPayMethod)-> console.log newPayMethod
 
-  getInfo : () ->
+  getInfo : () =>
     info =
       plan : $("input:radio[name='plan']:checked", @$node).val()
-      meta :
-        paymentMethod : @payMethods.getMicroChooserVal()
+      meta : {}
+
+    info.planData = @getPlan info.plan
 
     if info.plan == 'custom'
       info.meta.totalServers = @total
@@ -41,46 +57,12 @@ module.exports = class Production
 
     return info
 
+  getPlan : (planName) ->
+    for key, plan of @config.plans.paid
+      if key == planName
+        return plan
 
-  # ------------------------------------ 'Custom' plan
-
-  addSlider : () ->
-    if @config.currentPlan.key == "custom"
-      initialServerTotal = @config.currentPlan.customServers
-    else
-      initialServerTotal = 50
-
-    $customNode     = $(".choice#Custom", @$node)
-    slider          = new Slider($customNode, @onTotalChanged, initialServerTotal, 30, 1000, 20)
-    @$customServers       = $ '.servers', $customNode
-    @$customPrice         = $ '.cost', $customNode
-    @$customTriggers      = $ '.cost', $customNode
-    # @$customCollaborators = $ '.collaborators', $customNode
-
-    @onTotalChanged initialServerTotal
-
-  onTotalChanged : (newTotal) =>
-    @updateCustomServerTotal newTotal, Math.floor(@calculatePrice(newTotal))
-
-  updateCustomServerTotal : (@total, @price) ->
-    @$customServers.text       @total + " Servers"
-    # @$customCollaborators.text total + " Collaborators"
-    # @$customTriggers.text total
-    @$customPrice.text @price
-
-  calculatePrice : (instances) ->
-    # administrative costs
-    a = 10
-    # base cost for a server, never drops below this per server
-    b = 9.01273045
-    # fading cost per server, this part goes down to basically 0 after a while
-    f = 9.98726955
-    # speed of fading. It's exponential
-    s = 0.9685048376
-    # shorthand for number of instances
-    i = instances;
-
-    return (Math.round((a + i * b + i * f * Math.pow(s, (i - 1)))*100)/100);
+    return null
 
   # ------------------------------------ Helpers
 

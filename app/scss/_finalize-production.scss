@@ -1,0 +1,21 @@
+.finalize-production        {
+  .holder                   {display: flex; justify-content: space-around; width:1000px; padding: 50px 80px;
+    .actions                {display: flex; justify-content: center; margin-top:80px; padding-bottom:10px; width:initial;
+      .pay-holder           {@include blurb; display: flex; margin-right:40px;
+        .micro-chooser      {margin: 0 10px; min-width:100px; }
+      }
+      .arrow-button         {margin-top:-10px; }
+      .add-payment-method   {display: none; }
+      &.no-payment-methods  {
+        .arrow-button       {opacity:0.4; pointer-events: none; }
+        .pay-holder         {display:none;}
+        .add-payment-method {@include blurb; display:flex; align-items: center; margin-top:-10px; padding:0 50px;
+          .button           {margin-left: 10px; }
+        }
+      }
+    }
+    .icon-choice{
+      .cost{margin: 15px 0 20px ;}
+    }
+  }
+}

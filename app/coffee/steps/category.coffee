@@ -10,7 +10,7 @@ module.exports = class Category extends Step
     lexify()
 
     $(".continue", @$node).on 'click', nextStepCb
-
+    super()
 
   setPlan   : (plan) -> $("input:radio[value='#{plan}']", @$node).trigger 'click'
   getChoice : () => $("input:radio[name='app-type']:checked", @$node).val()

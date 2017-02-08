@@ -1,0 +1,24 @@
+.contact-us              {position: absolute; top:15px; right:100%; background: #00aef7; @include shadowed;
+  #close-btn             {position: absolute; right:8px; top:8px; cursor:pointer;
+    svg *                {fill:#B8B8B8; }
+  }
+  .header                {background: white; font-size:19px; font-weight:$medium; color:#6c7982; font-style: italic; white-space: nowrap; text-align: center; padding: 12px; min-width:445px; }
+  .items                 {display: flex; justify-content: space-around; padding:30px;
+    .item                {display: flex; flex-direction: column; align-items: center;
+      &:not(:last-child) {margin-right:57px; }
+      .display           {height:74px; white-space: nowrap; color:white; font-size:21px; font-weight: $medium; font-style: italic; letter-spacing: 0; display: flex; align-items: center; justify-content: center;  border-bottom:solid 1px rgba(#3f5f6b, 0.3); min-width:100px;
+        a                {color: white; border-bottom:solid 2px;
+          &:hover        {border-bottom-width:3px; }
+        }
+      }
+      .txt               {margin-top:10px; font-size: 13px; white-space: nowrap; color:#006994; font-weight: bold; font-style: italic; }
+      #open-live-chat    {cursor: pointer; }
+    }
+  }
+  &:after{content:""; width: 0; position: absolute; right: -14px; top:100px;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 0 12px 14px;
+    border-color: transparent transparent transparent #00aef7;
+  }
+}

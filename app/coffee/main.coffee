@@ -1,7 +1,8 @@
-StepManager = require 'step-manager'
-Category    = require 'steps/category'
-Finalize    = require 'steps/finalize'
-MiniDisplay = require 'mini-display'
+StepManager        = require 'step-manager'
+Category           = require 'steps/category'
+Finalize           = require 'steps/finalize'
+FinalizeProduction = require 'steps/finalize-production'
+MiniDisplay        = require 'mini-display'
 
 class PlanChooser
 
@@ -23,11 +24,18 @@ class PlanChooser
         @stepManager.hide()
 
   createSteps : () ->
-    $holder   = @stepManager.build()
-    @category = new Category $holder, @stepManager.nextStep
-    @finalize = new Finalize $holder, @category.getChoice, @config, @submit
+    $holder             = @stepManager.build()
+    @category           = new Category $holder, @stepManager.nextStep
+    @finalize           = new Finalize $holder, @category.getChoice, @config, @submit, @stepManager.nextStep, @addFinalizeProduction, @removeFinalizeProduction
+    @finalizeProduction = new FinalizeProduction $holder, @submit, @config, @finalize.getInfo
 
     @stepManager.addSteps [@category, @finalize]
+
+  addFinalizeProduction : () =>
+    @stepManager.addStep @finalizeProduction
+
+  removeFinalizeProduction : () =>
+    @stepManager.removeLastStep()
 
   # Todo : add error handling here
   submit : (data) =>

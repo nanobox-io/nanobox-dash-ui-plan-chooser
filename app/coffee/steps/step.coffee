@@ -1,7 +1,7 @@
 stepError = require 'jade/step-error'
 module.exports = class Step
 
-  constructor: () ->
+  constructor: () -> @isProduction = false
   getTitle   : () -> console.log 'Overwrite `getTitle` in extending class'
   destroy    : () ->
   activate   : () -> # Some steps use it, most don't

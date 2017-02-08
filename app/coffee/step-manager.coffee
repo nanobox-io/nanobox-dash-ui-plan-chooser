@@ -13,6 +13,7 @@ module.exports = class StepManager
     @$wrapper     = $ '.step-wrapper', @$node
     @$steps       = $ ".steps", @$node
     @$currentStep = $ "#current-step", @$node
+    @$totalSteps  = $ '#total-steps', @$node
     @$stepTitle   = $ ".step-title", @$node
     $(".ui-btn.cancel", @$node).on "click", @cancelCb
 
@@ -28,13 +29,19 @@ module.exports = class StepManager
     @$allSteps.css width: @$el.width()
     @slideToCurrentStep()
 
+  addStep : (step) ->
+    @steps.addItem step
+
+  removeLastStep : () ->
+    @steps.removeItembyParam "isProduction", true
+    @updateTitle()
+
   slideToCurrentStep : ()->
     if @currentStep?
       @currentStep.deactivate()
     @currentStep = @steps.currentItem()
     @currentStep.activate()
-    @$currentStep.text @steps.currentItemIndex+1
-    @$stepTitle.text @currentStep.getTitle()
+    @updateTitle()
 
     $(".plan-step", @$node).removeClass 'active'
     @currentStep.$node.addClass 'active'
@@ -53,6 +60,11 @@ module.exports = class StepManager
       @$node.addClass 'submit'
     else if @steps.currentItemIndex == 0
       @$node.addClass 'first'
+
+  updateTitle : () ->
+    @$currentStep.text @steps.currentItemIndex+1
+    @$totalSteps.text "#{@steps.totalItems} : "
+    @$stepTitle.text @currentStep.getTitle()
 
   nextStep : () =>
     @steps.next()

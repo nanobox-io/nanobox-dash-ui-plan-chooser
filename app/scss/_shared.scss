@@ -9,7 +9,11 @@
       &:before       {content:"$"}
       &:after        {content:"/mo"}
     }
-    .blurb           {color:#a3b4c2; font-size:16px; font-style:italic; line-height:1.5;}
+    .blurb           {color:#a3b4c2; font-size:16px; font-style:italic; line-height:1.5; text-align: left;
+      .feature       {
+        &:before     {content: "- "}
+      }
+    }
     &.big            {width:250px;
       .icon          {width:247px; height:247px;}
       .title         {font-size:19px; margin-top:-5px;}
@@ -18,6 +22,6 @@
     &.little-brother {margin-top:80px;}
   }
   .choice{
-    &.disabled         {opacity: 0.4; pointer-events: none; }
+    // &.disabled         {opacity: 0.4; pointer-events: none; }
   }
 }

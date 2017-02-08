@@ -10,9 +10,10 @@ config =
   addPayMethodPath  : "/some/path/add/pay"
   appDestroyPath    : "/some/path/to/destroy"
   plans             : shim.getPlans()
+  planFeatures      : shim.getPlanFeatures()
   currentPlan       :
-    isProduction : true
-    key          : "small"
+    isProduction : false
+    key          : "opensource"
     name         : "Small"
   ###
   data:
@@ -29,3 +30,8 @@ if !showMiniDisplay
 else
   $('.holder').css width:640, margin:"0 auto", 'margin-top':60;
   app.displayCurrentPlan()
+
+window.Dashboard =
+  olark:
+    isAvailable: true
+    open: ()-> console.log 'opening live chat..'

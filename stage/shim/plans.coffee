@@ -2,45 +2,78 @@ module.exports = class PlansShim
 
   constructor: () ->
 
+  getPlanFeatures : () ->
+    platform:
+      label: "Nanobox Platform"
+      description: ""
+    small_server:
+      label: "Single Small Server"
+    mult_servers:
+      label: "Unlimited Servers"
+      description: ""
+    triggers:
+      label: "Alerts / Triggers"
+      description: ""
+    auto_scaling:
+      label: "Auto Scaling"
+      description: ""
+    data_redundancy:
+      label: "DB Redundancy"
+      description: ""
+    on_premise:
+      label: "On Premise License"
+      description: ""
+    activity_logger:
+      label: "Activity Logger"
+      description: ""
+    custom_support:
+      label: "Custom Support"
+      description: ""
+    sla:
+      label: "SLA"
+      description: ""
   getPlans : () ->
     paid:
       small:
         name: 'Small'
         description: 'WIP description for Small.'
-        max_servers: 1
-        max_collaborators: 1
-        max_triggers: 1
-        max_price: 29.0
+        max_price: 9.0
         is_disabled: true
+        features:[
+          "platform"
+          "small_server"
+        ]
 
       startup:
         name: 'Startup'
         description: 'WIP description for Startup.'
-        max_servers: 5
-        max_collaborators: 5
-        max_triggers: 5
         max_price: 99.0
-
+        features:[
+          "platform"
+          "mult_servers"
+          "triggers"
+        ]
       business:
         name: 'Business'
         description: 'WIP description for Business.'
-        max_servers: 20
-        max_collaborators: 20
-        max_triggers: 20
         max_price: 299.0
-
+        features:[
+          "platform"
+          "mult_servers"
+          "triggers"
+          "auto_scaling"
+          "data_redundancy"
+        ]
       custom:
         name: 'Custom'
         description: 'WIP description for Custom'
-        min_servers: 21
-        max_servers: 'unlimited'
-        max_collaborators: 'unlimited'
-        max_triggers: 'unlimited'
-        max_price:
-          admin_cost: 10.0
-          base_cost: 9.01273045
-          fading_cost: 9.98726955
-          fading_speed: 0.9685048376
+        max_price: 'custom'
+        features:[
+          "on_premise"
+          "activity_logger"
+          "custom_support"
+          "sla"
+        ]
     unPaid:
       trial:
         name: '10 Day Free Trial'

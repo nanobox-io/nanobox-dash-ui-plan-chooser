@@ -1,9 +1,3 @@
-mixin pluralize(value, descriptor, klass)
-  if value == 1
-    .item(class="#{klass}") #{value} #{descriptor}
-  else
-    .item(class="#{klass}") #{value} #{descriptor}s
-    
   
 .production
   .icon-choices.lexi
@@ -17,13 +11,7 @@ mixin pluralize(value, descriptor, klass)
             input(value="#{plan.id}" type="radio" name="plan")
             .cost= plan.max_price
             .blurb 
-              +pluralize(plan.max_servers, 'Server', 'servers')
-              //- +pluralize(plan.max_collaborators, 'Collaborator', 'collaborators')
-              +pluralize(plan.max_triggers, 'Trigger', 'triggers')
-
+              each feature in plan.features
+                .feature= planFeatures[feature].label
   .finalize
-    .pay-holder Select a Payment Method : 
-    .add-payment-method 
-      .txt To checkout, first : 
-      a.button(href="#{addPayMethodPath}") Add a Payment Method
-    .arrow-button.lifecycle Submit
+    .arrow-button.continue Continue

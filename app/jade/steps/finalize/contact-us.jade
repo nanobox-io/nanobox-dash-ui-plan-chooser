@@ -1,0 +1,16 @@
+.contact-us
+  #close-btn
+    img.shadow-icon(data-src="close-x")
+  .header Build a plan that fits your needs, Let's talk
+  .items 
+    if chatIsAvailable 
+      .item
+        .display#open-live-chat
+          img.shadow-icon(data-src="chat-medium")
+        .txt Live Chat
+    .item
+      .display <a href="mailto:hello@nanobox.io">hello@nanobox.io</a>
+      .txt Email
+    .item
+      .display (801) 396-7422
+      .txt Phone
