@@ -15,7 +15,7 @@ module.exports = class FinalizeProduction extends Step
     $(".arrow-button", @$node).on 'click', @submit
 
     if @config.paymentMethods.length == 0
-      $(".finalize", @$node).addClass "no-payment-methods"
+      $(".holder", @$node).addClass "no-payment-methods"
 
   addPaymentMethodChooser : () ->
     @payMethods = new nanobox.PaymentMethods $(".pay-holder", @$node), @config, false

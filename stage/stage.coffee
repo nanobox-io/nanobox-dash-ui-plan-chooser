@@ -4,7 +4,7 @@ shim      = new PlanShim()
 # Samplse Config
 config =
   onCancel          : ()-> console.log "canceling.."
-  paymentMethods    : paymentMethodShim.getPaymentMethods(),
+  paymentMethods    : []#paymentMethodShim.getPaymentMethods(),
   paymentMethod     : 'personal'
   planChangePath    : "/some/path"
   addPayMethodPath  : "/some/path/add/pay"
@@ -13,7 +13,7 @@ config =
   planFeatures      : shim.getPlanFeatures()
   currentPlan       :
     isProduction : false
-    key          : "opensource"
+    key          : "tinker"
     name         : "Small"
   ###
   data:
