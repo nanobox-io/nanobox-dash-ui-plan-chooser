@@ -22,6 +22,8 @@ config =
   ###
   changePlan  : (data, cb)-> console.log "Changing plan to : "; console.log data; cb()
 
+config = require './shim/sample.json'
+
 showMiniDisplay = false
 app = new nanobox.PlanChooser( $(".holder"), config )
 

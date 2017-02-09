@@ -1,0 +1,190 @@
+{
+  "paymentMethods": [
+    {
+      "state": "active",
+      "id": "4c7184be-5cad-4370-9dfc-c62c07d73465",
+      "name": "personal card",
+      "kind": "card",
+      "meta": {
+        "bin": "411111",
+        "lastFourDigits": "1111",
+        "cardType": "Visa",
+        "expirationDate": "08/2017",
+        "expirationMonth": "08",
+        "expirationYear": "2017",
+        "imageURL": "https://assets.braintreegateway.com/payment_method_logo/visa.png?environment=sandbox"
+      },
+      "billingDay": 10,
+      "userInvoiceInfo": null,
+      "apps": [
+        {
+          "name": "amet",
+          "href": "/apps/e67d2d87-6c86-4c7b-b475-3f9350ef557b"
+        }
+      ],
+      "invoices": [
+        {
+          "id": "1eeb5194-ee2f-42b0-ad6e-5c33a930ca30",
+          "startAt": 1486599711000,
+          "endAt": 1486599915000
+        },
+        {
+          "id": "fc0ce6aa-8df3-4297-ba62-deeb6bc4ecb1",
+          "startAt": 1486686315000,
+          "endAt": 1486684800000
+        }
+      ]
+    }
+  ],
+  "paymentMethod": "4c7184be-5cad-4370-9dfc-c62c07d73465",
+  "addPayMethodPath": "/users/payment_methods",
+  "plans": {
+    "unpaid": {
+      "internal": {
+        "name": "Internal",
+        "description": "A plan for internal, company apps.",
+        "max_price": 0,
+        "hidden": true,
+        "features": [
+          "platform",
+          "mult_servers",
+          "triggers",
+          "auto_scaling",
+          "data_redundancy"
+        ]
+      },
+      "trial": {
+        "name": "10 Day Free Trial",
+        "description": "10 Day Free Trial for new apps.",
+        "free_days": 10,
+        "max_price": 0,
+        "features": [
+          "platform",
+          "mult_servers",
+          "triggers",
+          "auto_scaling",
+          "data_redundancy"
+        ]
+      },
+      "opensource": {
+        "name": "Open Source",
+        "description": "Free Tinker plan for open-source projects.",
+        "max_price": 0,
+        "features": [
+          "platform",
+          "small_server"
+        ]
+      },
+      "pre-production": {
+        "name": "Pre-Production",
+        "description": "WIP description for Pre-Production.",
+        "max_price": 0,
+        "features": [
+          "platform",
+          "small_server"
+        ]
+      }
+    },
+    "paid": {
+      "tinker": {
+        "name": "Tinker App",
+        "description": "WIP description for Tinker.",
+        "paid": true,
+        "max_price": 9,
+        "features": [
+          "platform",
+          "small_server"
+        ]
+      },
+      "core": {
+        "name": "Core App",
+        "description": "WIP description for Core.",
+        "paid": true,
+        "max_price": 99,
+        "features": [
+          "platform",
+          "mult_servers",
+          "triggers"
+        ]
+      },
+      "flex": {
+        "name": "Flex App",
+        "description": "WIP description for Flex.",
+        "paid": true,
+        "max_price": 299,
+        "is_disabled": true,
+        "features": [
+          "platform",
+          "mult_servers",
+          "triggers",
+          "auto_scaling",
+          "data_redundancy"
+        ]
+      },
+      "custom": {
+        "name": "Custom",
+        "description": "WIP description for Custom.",
+        "paid": true,
+        "max_price": "custom",
+        "features": [
+          "platform",
+          "mult_servers",
+          "triggers",
+          "auto_scaling",
+          "data_redundancy",
+          "on_premise",
+          "activity_logger",
+          "custom_support",
+          "sla"
+        ]
+      }
+    }
+  },
+  "planFeatures": {
+    "platform": {
+      "label": "Nanobox Platform",
+      "description": null
+    },
+    "small_server": {
+      "label": "Single Small Server"
+    },
+    "mult_servers": {
+      "label": "Unlimited Servers",
+      "description": null
+    },
+    "triggers": {
+      "label": "Alerts / Triggers",
+      "description": null
+    },
+    "auto_scaling": {
+      "label": "Auto Scaling",
+      "description": null
+    },
+    "data_redundancy": {
+      "label": "DB Redundancy",
+      "description": null
+    },
+    "on_premise": {
+      "label": "On Premise License",
+      "description": null
+    },
+    "activity_logger": {
+      "label": "Activity Logger",
+      "description": null
+    },
+    "custom_support": {
+      "label": "Custom Support",
+      "description": null
+    },
+    "sla": {
+      "label": "SLA",
+      "description": null
+    }
+  },
+  "currentPlan": {
+    "name": "Tinker App",
+    "key": "tinker",
+    "isProduction": true
+  },
+  "planChangePath": "/apps/e67d2d87-6c86-4c7b-b475-3f9350ef557b/plan_choose"
+}

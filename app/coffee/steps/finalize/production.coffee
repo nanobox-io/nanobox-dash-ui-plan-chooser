@@ -68,7 +68,7 @@ module.exports = class Production
 
   currentlyPaying : ()->
     for key, plan of @config.plans.paid
-      if plan.name.toLowerCase() == @config.currentPlan.key.toLowerCase()
+      if key == @config.currentPlan.key.toLowerCase()
         return true
 
   sortPlans : () ->
