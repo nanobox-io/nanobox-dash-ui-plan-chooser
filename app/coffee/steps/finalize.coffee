@@ -26,8 +26,9 @@ module.exports = class Finalize extends Step
       when 'pre-production'
         @display = new PreProduction(@$node, @submitCb)
       when 'production'
-        @addProductionFinalStep()
-        @display = new Production(@$node, @nextStep, @config)
+        if !@config.paymentMethod?
+          @addProductionFinalStep()
+        @display = new Production(@$node, @nextStep, @submitCb, @config)
         return
 
     @removeProductionFinalStep()

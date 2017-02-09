@@ -4,15 +4,21 @@ Slider     = require 'slider'
 
 module.exports = class Production
 
-  constructor: ($el, nextStep, @config) ->
+  constructor: ($el, nextStep, submitCb, @config) ->
     @$node = $ production( {plans:@sortPlans(), addPayMethodPath:@config.addPayMethodPath, planFeatures:@config.planFeatures} )
     $el.append @$node
     castShadows @$node
     lexify @$node
     @$arrowBtn = $(".arrow-button", @$node)
+    hasPaymentMethod = @config.paymentMethod?
+
+    # On submit
     @$arrowBtn.on 'click', (e)->
       # $(e.currentTarget).addClass 'ing'
-      nextStep()
+      if !hasPaymentMethod
+        nextStep()
+      else
+        submitCb()
 
     # Select their current plan
     @selectCurrentPlan()
@@ -22,6 +28,10 @@ module.exports = class Production
         @showCustom()
       else
         @hideCustom()
+
+    # Don't make them change the payment method if they already have one
+    if hasPaymentMethod
+      @$arrowBtn.text "Submit"
 
   selectCurrentPlan : () ->
     if @currentlyPaying()
@@ -53,7 +63,6 @@ module.exports = class Production
     if info.plan == 'custom'
       info.meta.totalServers = @total
       info.meta.cost         = @price
-
 
     return info
 
