@@ -3,8 +3,11 @@
     .arrow-button {margin-left: -60px;}
     a.delete-app  {color:#97B9C6; position: absolute; right:30px; font-size:16px; font-style: italic; margin-top:10px; display: flex;
       .txt        {border-bottom:solid 1px; }
-      svg {margin-right:9px; margin-top:2px; 
-        *       {fill: #97B9C6; }
+      svg         {margin-right:9px; margin-top:2px;
+        *         {fill: #97B9C6; }
+      }
+      &:hover     {color:#608E9F;
+        svg *     {fill: #608E9F; }
       }
     }
   }
