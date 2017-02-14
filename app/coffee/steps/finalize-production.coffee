@@ -12,7 +12,9 @@ module.exports = class FinalizeProduction extends Step
     @isProduction = true
     @addPaymentMethodChooser()
     @$summary = $(".summary", @$node)
-    $(".arrow-button", @$node).on 'click', @submit
+    $(".arrow-button", @$node).on 'click', (e)=>
+      $(e.currentTarget).addClass 'ing'
+      @submit()
 
     if @config.paymentMethods.length == 0
       $(".holder", @$node).addClass "no-payment-methods"

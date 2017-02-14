@@ -20,6 +20,7 @@ module.exports = class Production
         nextStep()
       else
         submitCb()
+        $(e.currentTarget).addClass 'ing'
 
     # Select their current plan
     @selectCurrentPlan()

@@ -7,7 +7,9 @@ module.exports = class PreProduction
     $el.append @$node
     castShadows @$node
     lexify @$node
-    $(".arrow-button", @$node).on 'click', ()=> onSubmit()
+    $(".arrow-button", @$node).on 'click', (e)=>
+      $(e.currentTarget).addClass 'ing'
+      onSubmit()
 
   getInfo : () ->
     plan : "pre-production"
@@ -18,12 +20,3 @@ module.exports = class PreProduction
       contactDetails     : $('.contact-details', @$node).val()
 
   destroy : () -> @$node.remove()
-
-  # getThreeBusinessDays : () ->
-  #   @daysToContact = 3
-  #   today = new Date().getDay()
-  #   if today == 0
-  #     @daysToContact++
-  #   else if today > 2
-  #     @daysToContact += 2
-  #   return @daysToContact

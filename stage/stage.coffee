@@ -5,8 +5,8 @@ shim      = new PlanShim()
 config =
   onCancel          : ()-> console.log "canceling.."
   addDaysToTrial    : (days)-> console.log "adding #{days} days to the trial"
-  paymentMethods    : []#paymentMethodShim.getPaymentMethods(),
-  paymentMethod     : 'personal'
+  paymentMethods    : paymentMethodShim.getPaymentMethods(),
+  paymentMethod     : null#'personal'
   planChangePath    : "/some/path"
   addPayMethodPath  : "/some/path/add/pay"
   appDestroyPath    : "/some/path/to/destroy"
