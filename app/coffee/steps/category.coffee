@@ -3,8 +3,8 @@ category = require 'jade/steps/category'
 
 module.exports = class Category extends Step
 
-  constructor: ($el, nextStepCb) ->
-    @$node = $ category( {} )
+  constructor: ($el, nextStepCb, config) ->
+    @$node = $ category( config )
     $el.append @$node
     castShadows @$node
     lexify()

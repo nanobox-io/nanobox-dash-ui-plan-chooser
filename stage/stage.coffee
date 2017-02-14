@@ -12,7 +12,7 @@ config =
   appDestroyPath    : "/some/path/to/destroy"
   plans             : shim.getPlans()
   planFeatures      : shim.getPlanFeatures()
-  featuresUsed      : shim.currentlyUsedFeatures()
+  featuresUsed      : []#shim.currentlyUsedFeatures()
   currentPlan       :
     isProduction : false
     key          : "trial"

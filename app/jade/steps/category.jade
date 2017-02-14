@@ -23,4 +23,8 @@
         .blurb Active projects live and in full production
   
   .finalize
+    if appDestroyPath != null
+      a.delete-app(href="#{appDestroyPath}")
+        img.shadow-icon(data-src="close-x")
+        .txt Delete App
     .arrow-button.continue Continue

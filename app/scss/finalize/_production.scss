@@ -1,15 +1,40 @@
-.production              {
-  .icon-choices .icon-choice.little-brother{margin-top:40px; }
-  .icon                  {flex-direction:column;justify-content: center; position: relative; justify-content: flex-end;
-    svg                  {margin-bottom:70px; }
-    .micro-title         {position: absolute;bottom :35px; font-style:normal; font-weight: $bold; letter-spacing: 0.06em; font-size:13px; color:#a3b4c2; text-transform: uppercase; }
+.production            {
+  .icon-choices        {justify-content: space-between;
+    .icon-choice       {border-right:solid 1px #D2D8DE; min-height: 781px; width:246px;
+      &.little-brother {margin-top:40px; }
+    }
   }
-  .finalize              {display: flex; justify-content: center; margin-top:25px; padding-bottom:10px;}
-  .choice                {position: relative;
-    &#Custom             {
-      .cost              {
-        &:after,
-        &:before         {display: none; }
+  .icon                {flex-direction:column;justify-content: center; position: relative; justify-content: flex-end;
+    svg                {margin-bottom:70px; }
+    .micro-title       {position: absolute;bottom :35px; font-style:normal; font-weight: $bold; letter-spacing: 0.06em; font-size:13px; color:#a3b4c2; text-transform: uppercase; }
+  }
+  .finalize            {display: flex; align-items: center; justify-content: flex-end; margin-top:25px; padding-bottom:10px; color:#418fde;
+    .plan-name         {text-transform: uppercase; font-weight: bold; font-style:italic; margin-right:10px; padding-top:6px; font-size:14px; letter-spacing: 0.06em;
+      &:after          {content:" : "}
+    }
+    .cost              {font-size:22px; font-weight:normal; letter-spacing: 0; text-transform: none; font-style:italic; margin-right:30px;
+      &:before         {content:"$"}
+      &:after          {content:"/mo"}
+      &.custom         {opacity: 0; width: 0px;  }
+    }
+    .arrow-button      {margin-right: 5px; }
+  }
+  .choice              {position: relative;
+    .description       {font-style: italic; font-size: 14px; padding: 0 15px 0 20px; text-align: left; line-height: 1.5; color:#67899e; width: 245px; min-height:175px; margin-right:-15px; }
+    .blurb             {color: #6789A0;
+      &:before         {display: block; content:"Additional Features"; text-transform: uppercase; font-size: 12px; font-weight: 700; font-style: normal; text-align: center; letter-spacing: .06em; border-bottom: solid 1px #D2D8DE; margin: 0 20px 15px; height: 30px; min-width:170px; }
+    }
+    .icon              { border:solid 0px; transition: all 100ms;}
+    &.selected         {
+      .icon            {border:solid 3px; }
+    }
+    &#custom           {
+      .icon-choice     {border-right: none;
+        .cost            {
+          &:after,
+          &:before       {display: none; }
+        }
+        .blurb:before    {content : "ALSO AVAILABLE"}
       }
     }
   }

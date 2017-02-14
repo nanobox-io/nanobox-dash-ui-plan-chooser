@@ -1,8 +1,12 @@
   
 .production
+  .finalize
+    .plan-name#plan-name Scalabless App
+    .cost#plan-cost 49
+    .arrow-button.continue.lifecycle Continue
   .icon-choices.lexi
     each plan in plans
-      .choice(id="#{plan.name}" class=plan.is_disabled ? "disabled" : "")
+      .choice(id="#{plan.id}" class=plan.is_disabled ? "disabled" : "")
         label
           .icon-choice.little-brother.pre-prod
             .icon
@@ -10,8 +14,7 @@
               .micro-title #{plan.name}
             input(value="#{plan.id}" type="radio" name="plan")
             .cost= plan.max_price
+            .description!= plan.displayDescription
             .blurb 
-              each feature in plan.features
-                .feature= planFeatures[feature].label
-  .finalize
-    .arrow-button.continue.lifecycle Continue
+              each feature in plan.displayFeatures
+                .feature= feature

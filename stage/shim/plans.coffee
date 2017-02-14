@@ -87,6 +87,14 @@ module.exports = class PlansShim
         max_triggers: 1
         max_price: 0.0
 
+      "pre-production":
+        name: 'Open Source'
+        description: 'Free Tinker for open-source and personal projects.'
+        max_servers: 1
+        max_collaborators: 1
+        max_triggers: 1
+        max_price: 0.0
+
       opensource:
         name: 'Open Source'
         description: 'Free Tinker for open-source and personal projects.'

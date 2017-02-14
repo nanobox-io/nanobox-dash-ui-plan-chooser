@@ -6,7 +6,7 @@ Slider              = require 'slider'
 module.exports = class Production
 
   constructor: ($el, nextStep, submitCb, @config) ->
-    @$node = $ production( {plans:@sortPlans(), addPayMethodPath:@config.addPayMethodPath, planFeatures:@config.planFeatures} )
+    @$node = $ production( {plans:@sortPlans(), addPayMethodPath:@config.addPayMethodPath} )
     $el.append @$node
     castShadows @$node
     lexify @$node
@@ -22,11 +22,11 @@ module.exports = class Production
         submitCb()
         $(e.currentTarget).addClass 'ing'
 
-    # Select their current plan
-    @selectCurrentPlan()
-
     $("input:radio[name='plan']", @$node).on 'click', (e)=>
       @onChangePlan e.currentTarget.value, $(e.currentTarget).parents('.choice')
+
+    # Select their current plan
+    @selectCurrentPlan()
 
     # Don't make them change the payment method if they already have one
     if hasPaymentMethod
@@ -35,6 +35,12 @@ module.exports = class Production
   onChangePlan : (planId, $el) ->
     @removeWarning()
     @enableArrowBtn()
+    $('.choice', @$node).removeClass 'selected'
+    $("##{planId}", @$node).addClass 'selected'
+    plan = @config.plans.paid[planId]
+    $("#plan-name", @$node).text plan.name
+    $("#plan-cost", @$node).text plan.max_price
+
     if planId == 'custom'
       @showCustom()
       return
@@ -69,15 +75,17 @@ module.exports = class Production
 
   showCustom : () ->
     @$contactUs = $ contactUs( {chatIsAvailable:window.Dashboard?.olark?.isAvailable} )
-    $("#Custom", @$node).append @$contactUs
+    $("#custom", @$node).append @$contactUs
     $("#close-btn", @$contactUs).on 'click', (e)=> e.stopPropagation(); @hideCustom(); @selectCurrentPlan()
     $("#open-live-chat", @$contactUs).on 'click', ()=> Dashboard.olark.open()
+    $("#plan-cost", @$node).addClass 'custom'
     castShadows @$contactUs
     @disableArrowBtn()
 
   hideCustom : () ->
     if @$contactUs?
       @$contactUs.remove()
+    $("#plan-cost", @$node).removeClass 'custom'
     @enableArrowBtn()
 
   getInfo : () =>
@@ -123,6 +131,7 @@ module.exports = class Production
 
   sortPlans : () ->
     ar = []
+    @addPlanFeaturesAndDescriptions()
     for key, plan of @config.plans.paid
       plan.id = key
       ar.push plan
@@ -136,6 +145,29 @@ module.exports = class Production
         return 0
 
     return ar
+
+  # Just cosmetic. Add the features / descriptions to each plan
+  addPlanFeaturesAndDescriptions : () ->
+    baseFeatures = ["Nanobox Desktop", "Health Monitoring", "Simple Logging", "Console Tunneling", "SSL Encryption"]
+    obj = {}
+
+    obj.pet       =
+      description : "Deploy your app to a single server we provision on your cloud provider"
+      features    : baseFeatures
+
+    obj.scalable  =
+      description : "Deploy to servers we provision on your cloud provider. Scale up or down at any time via the simple dashboard"
+      features    : baseFeatures.concat ["Load Balancing", "Horizontal Scaling", "Vertical Scaling", "Alerts / Triggers"]
+    obj.critical  =
+      description : "Deploy to servers we provision on your cloud provider. Scale up or down at any time via the simple dashboard<br/><br/>Add auto-scaling & database redundancy with a single click"
+      features : obj.scalable.features.concat ["Auto Scaling", "DB Redundancy"]
+    obj.custom    =
+      description : "Mix and match features to build a plan that fits your needs"
+      features    : ["On Premise Licencing", "Activity Logging", "Custom Support Options", "SLA"]
+
+    for key, plan of @config.plans.paid
+      plan.displayFeatures    = obj[key].features
+      plan.displayDescription = obj[key].description
 
 
   destroy : () -> @$node.remove()

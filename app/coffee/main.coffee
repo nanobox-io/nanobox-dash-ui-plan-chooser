@@ -25,7 +25,7 @@ class PlanChooser
 
   createSteps : () ->
     $holder             = @stepManager.build()
-    @category           = new Category $holder, @stepManager.nextStep
+    @category           = new Category $holder, @stepManager.nextStep, @config
     @finalize           = new Finalize $holder, @category.getChoice, @config, @submit, @stepManager.nextStep, @addFinalizeProduction, @removeFinalizeProduction
     @finalizeProduction = new FinalizeProduction $holder, @submit, @config, @finalize.getInfo
 
