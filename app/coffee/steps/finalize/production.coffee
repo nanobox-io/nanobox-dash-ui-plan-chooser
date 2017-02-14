@@ -137,12 +137,11 @@ module.exports = class Production
       ar.push plan
 
     ar.sort (a,b)->
-      if a.max_price < b.max_price
-        return -1
-      else if a.max_price > b.max_price
-        return 1
-      else
-        return 0
+      if typeof a.max_price == 'string' then return 1
+      if typeof b.max_price == 'string' then return -1
+      if a.max_price < b.max_price      then return -1
+      if a.max_price > b.max_price      then return 1
+      return 0
 
     return ar
 
