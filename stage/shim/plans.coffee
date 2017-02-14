@@ -2,6 +2,10 @@ module.exports = class PlansShim
 
   constructor: () ->
 
+  currentlyUsedFeatures : () -> ['triggers', 'data_redundancy']
+
+
+
   getPlanFeatures : () ->
     platform:
       label: "Nanobox Platform"
@@ -34,28 +38,27 @@ module.exports = class PlansShim
       description: ""
   getPlans : () ->
     paid:
-      tinker:
-        name: 'Tinker'
-        description: 'WIP description for Small.'
+      pet:
+        name: 'Pet Project'
+        description: 'WIP description for Pet Project.'
         max_price: 9.0
-        is_disabled: true
         features:[
           "platform"
           "small_server"
         ]
 
-      core:
-        name: 'Core'
-        description: 'WIP description for Startup.'
+      scalable:
+        name: 'Scalable'
+        description: 'WIP description for Scalable.'
         max_price: 99.0
         features:[
           "platform"
           "mult_servers"
           "triggers"
         ]
-      flex:
-        name: 'Flex'
-        description: 'WIP description for Business.'
+      critical:
+        name: 'Critical'
+        description: 'WIP description for Critical.'
         max_price: 299.0
         features:[
           "platform"
