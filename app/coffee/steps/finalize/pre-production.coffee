@@ -3,7 +3,7 @@ preProduction = require 'jade/steps/finalize/pre-production'
 module.exports = class PreProduction
 
   constructor: ($el, onSubmit) ->
-    @$node = $ preProduction( {} )
+    @$node = $ preProduction( {extension:@getThreeBusinessDays()} )
     $el.append @$node
     castShadows @$node
     lexify @$node
@@ -16,4 +16,14 @@ module.exports = class PreProduction
       helpNeeded         : $('.help-needed', @$node).val()
       contactChannelPref : $('.contact-pref', @$node).val()
       contactDetails     : $('.contact-details', @$node).val()
+
   destroy : () -> @$node.remove()
+
+  getThreeBusinessDays : () ->
+    daysToContact = 3
+    today = new Date().getDay()
+    if today == 0
+      daysToContact++
+    else if today > 2
+      daysToContact += 2
+    return daysToContact

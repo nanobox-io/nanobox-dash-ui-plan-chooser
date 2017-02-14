@@ -4,7 +4,7 @@ shim      = new PlanShim()
 # Samplse Config
 config =
   onCancel          : ()-> console.log "canceling.."
-  addDaysToTrial    : (days)-> console.log "adding #{days} days to the trial" 
+  addDaysToTrial    : (days)-> console.log "adding #{days} days to the trial"
   paymentMethods    : []#paymentMethodShim.getPaymentMethods(),
   paymentMethod     : 'personal'
   planChangePath    : "/some/path"
@@ -23,6 +23,9 @@ config =
     meta : hash of info specific to their plan
   ###
   changePlan  : (data, cb)-> console.log "Changing plan to : "; console.log data; cb()
+
+featuresUsed   : ['auto_scaling'] # An array of keys. Features currently used by the app
+addDaysToTrial : (days)->         # A callback that adds 'n' number of days to the trial
 
 # config = require './shim/sample.json'
 
