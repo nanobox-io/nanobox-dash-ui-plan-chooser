@@ -24,7 +24,7 @@ module.exports = class Finalize extends Step
       when 'open-source'
         @display = new OpenSource(@$node, @submitCb)
       when 'pre-production'
-        @display = new PreProduction(@$node, @submitCb)
+        @display = new PreProduction(@$node, @submitCb, @config.addDaysToTrial)
       when 'production'
         if !@config.paymentMethod?
           @addProductionFinalStep()
