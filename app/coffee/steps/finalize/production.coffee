@@ -56,7 +56,7 @@ module.exports = class Production
     @$warning = $ unavailableFeatures( {features:unsupportedFeatures, newPlan:newPlan} )
     $el.append @$warning
     castShadows @$warning
-    $('#add-hours', @$warning).on 'click', ()=> @config.addDaysToTrial @config.currentPlan.key, 1
+    $('#add-hours', @$warning).on 'click', ()=> @config.addDaysToTrial @config.currentPlan.id, 1
     $('#close-it', @$warning).on 'click',  ()=> @$warning.remove(); @selectCurrentPlan()
 
   removeWarning : () ->

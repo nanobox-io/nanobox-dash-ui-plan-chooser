@@ -16,6 +16,7 @@ config =
   currentPlan       :
     isProduction : false
     key          : "trial"
+    id           : "someid"
     name         : "Trial"
   ###
   data:
@@ -24,8 +25,8 @@ config =
   ###
   changePlan  : (data, cb)-> console.log "Changing plan to : "; console.log data; cb()
 
-featuresUsed   : ['auto_scaling'] # An array of keys. Features currently used by the app
-addDaysToTrial : (days)->         # A callback that adds 'n' number of days to the trial
+# featuresUsed   : ['auto_scaling'] # An array of keys. Features currently used by the app
+# addDaysToTrial : (days)->         # A callback that adds 'n' number of days to the trial
 
 # config = require './shim/sample.json'
 
