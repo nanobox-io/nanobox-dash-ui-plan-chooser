@@ -4,7 +4,7 @@ shim      = new PlanShim()
 # Samplse Config
 config =
   onCancel          : ()-> console.log "canceling.."
-  addDaysToTrial    : (days)-> console.log "adding #{days} days to the trial"
+  addDaysToTrial    : (planId, days)-> console.log "adding #{days} days to the trial. (Current plan : #{planId})"
   paymentMethods    : paymentMethodShim.getPaymentMethods(),
   paymentMethod     : null#'personal'
   planChangePath    : "/some/path"
@@ -12,7 +12,7 @@ config =
   appDestroyPath    : "/some/path/to/destroy"
   plans             : shim.getPlans()
   planFeatures      : shim.getPlanFeatures()
-  featuresUsed      : []#shim.currentlyUsedFeatures()
+  featuresUsed      : shim.currentlyUsedFeatures()
   currentPlan       :
     isProduction : false
     key          : "trial"
