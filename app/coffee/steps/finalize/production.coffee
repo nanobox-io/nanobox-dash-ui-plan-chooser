@@ -53,7 +53,7 @@ module.exports = class Production
 
   notifyPlanIsSmallerThanApp : (unsupportedFeatures, newPlan, $el) ->
     @disableArrowBtn()
-    @$warning = $ unavailableFeatures( {features:unsupportedFeatures, newPlan:newPlan} )
+    @$warning = $ unavailableFeatures( {features:unsupportedFeatures, newPlan:@config.plans.paid[newPlan].name.toLowerCase()} )
     $el.append @$warning
     castShadows @$warning
     $('#add-hours', @$warning).on 'click', ()=> @config.addDaysToTrial @config.currentPlan.id, 1
@@ -119,7 +119,7 @@ module.exports = class Production
     # Check if all the features currently used by the app are offered in this plan
     for feature in @config.featuresUsed
       if @config.plans.paid[plan].features.indexOf(feature) == -1
-        ar.push feature
+        ar.push @config.planFeatures[feature].label
 
     return ar
 
