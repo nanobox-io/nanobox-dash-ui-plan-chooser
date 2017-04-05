@@ -1,5 +1,5 @@
 .mini-display
   .icon
     img.shadow-icon(data-src="plan-#{currentPlan.key}")
-  .title= currentPlan.name
+  .title #{currentPlan.name} <span>$#{currentPlanDetails.max_price}</span>
   a.arrow-button(href="#{planChangePath}") Change Plan

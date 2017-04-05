@@ -15,7 +15,7 @@ config =
   featuresUsed      : shim.currentlyUsedFeatures()
   currentPlan       :
     isProduction : false
-    key          : "trial"
+    key          : "scalable"
     id           : "someid"
     name         : "Trial"
   ###
@@ -30,7 +30,7 @@ config =
 
 # config = require './shim/sample.json'
 
-showMiniDisplay = false
+showMiniDisplay = true
 app = new nanobox.PlanChooser( $(".holder"), config )
 
 if !showMiniDisplay

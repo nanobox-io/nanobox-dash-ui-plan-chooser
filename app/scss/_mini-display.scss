@@ -1,6 +1,11 @@
 .mini-display   {display: flex; flex-direction:column; align-items: center;
   .icon         {background: white; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px; border-radius: 50%; }
-  .title        {@include title; text-align: center; border:none; margin:20px 0 20px; }
+  .title        {@include title; text-align: center; border:none; margin:20px 0 20px;
+    span        {font-style: italic; letter-spacing: 0.03em; 
+      &:before  {content:"- "; }
+      &:after   {content:".00"; }
+    }
+  }
   .arrow-button {
     &:hover     {color:white; }
   }
